@@ -1,0 +1,21 @@
+--- #webservr setup
+- hosts: server2 
+  user: test
+  sudo: yes
+  vars:
+    
+    vars_prompt:
+      - name: pkg2
+        prompt: enter package name
+        private: NO
+  tasks:
+      - name: install httpd package
+        yum: name={{pkg2}} state=installed
+      - name: copy index.html
+        copy: src=index.html dest=/var/www/html/index.html
+      - name: install curl package
+        yum: name={{pkg2}} state=installed
+      - name: start httpd service
+        service: name={{pkg2}} state=started
+      - name: start telnet package
+        yum: name={{pkg2}} state=installed 

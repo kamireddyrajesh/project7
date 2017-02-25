@@ -1,0 +1,9 @@
+--- #webservr setup
+- hosts: server2 
+  user: test
+  sudo: yes
+  vars_files: 
+      - abc.yml
+  tasks:
+  - name: install curl package
+    yum: name={{pkg1}} state=installed

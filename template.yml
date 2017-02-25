@@ -1,0 +1,7 @@
+--- #webservr setup
+- hosts: webserver 
+  user: test
+  sudo: yes
+  tasks:
+  - name: install httpd package
+    template: src=abc.j2 dest=/etc/abc

@@ -1,0 +1,8 @@
+--- #webservr setup
+- hosts: server3 
+  user: test
+  sudo: yes
+  gather_facts: yes
+  tasks:
+   - name: download index.html
+     get_url: url=http://www.rediff.com/index.html  dest=/home/test/

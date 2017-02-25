@@ -1,0 +1,23 @@
+--- #webservr setup
+- hosts: server2
+  user: test
+  sudo: yes
+  vars:
+  vars_prompt:
+      - name: pkg2
+        prompt: enter package name
+        private: no
+  tasks:
+      - name: install httpd package
+        yum: name={{item}} state=installed
+        with_items:
+            - httpd
+            - curl
+      - name: copy index.html
+        copy: src=index.html dest=/var/www/html/index.html
+      - name: start service package
+        service: name={{item}} state=restarted
+        with_items:
+            - httpd
+      - name: install httpd package
+        yum: name=curl state=installed
